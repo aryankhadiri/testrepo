@@ -1,13 +1,15 @@
 import requests
-
+import os
 import time
+from dotenv import load_dotenv
 
 
 class DiscoverVoicceAgentScenario():
 
     def __init__(self):
-        self.authorization_token = "sk-2629df12b920117989d58f6ab10ee710"
-        self.deepgram_key = "d1e6970ccb95f9acf0ef7f3cc76be11d87b27c9a"
+        load_dotenv()
+        self.authorization_token = os.getenv("hamming_api_key")
+        self.deepgram_key = os.getenv("deepgram_key")
 
     def start_call(self, phone_number: str, prompt: str, webhook_url: str) -> str:
         url = "https://app.hamming.ai/api/rest/exercise/start-call"
